@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/login.css">
+    <!-- 引入Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>login</title>
+</head>
+
+<body>
+    <div id="formContainer" class="login-container">
+        <div class="login-form">
+            <!-- Login form -->
+            <form id="login">
+                <header>
+                    <h1>欢迎回来</h1>
+                    <!-- <p>请先登录</p> -->
+                </header>
+                <section>
+                    <label>
+                        <p>用户名</p>
+                        <input type="text" id="userName" class="form-control" />
+                        <div class="border"></div>
+                    </label>
+                    <label>
+                        <p>密码</p>
+                        <input type="password" id="pwd" class="form-control" />
+                        <div class="border"></div>
+                    </label>
+                    <button type="button" id="loginButton" class="btn btn-primary btn-block">登 录</button>
+                </section>
+                <footer>
+                    <a href="#">忘记密码</a>
+                    <a href="register.html" id="registerBtn" class="ml-2">注册新用户</a>
+                </footer>
+            </form>
+        </div>
+    </div>
+
+    <!-- 引入Bootstrap JS 和 jQuery (如果Bootstrap版本需要) -->
+    <!-- 注意：确保在Bootstrap JS之前引入jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- 响应事件 -->
+    <script>
+        window.onload = function () {
+            var oLogin = document.getElementById('loginButton');
+            oLogin.onclick = function () {
+                var userName = document.getElementById('userName').value;
+                var passwor = document.getElementById('pwd').value;
+                var userInfo = JSON.parse(localStorage.getItem('userInfo'));  //将userInfo对象取出来 长期存到本地
+                if (userName != userInfo.username && passwor != userInfo.Passwor) {
+                    alert('你输入的用户名和密码有误！');
+                    return false;
+                }
+                var session = sessionStorage.getItem('userInfo');
+                if (session) {
+                    alert(userInfo.username + '已登录');
+                } else {
+                    sessionStorage.getItem('userInfo');
+                    alert('登录成功');
+                    location.href = 'index.html';
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

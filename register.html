@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 引入Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>register</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+
+            height: 100%;
+        }
+
+        .dwo {
+            display: flex;
+            height: 100%;
+            background-color: rgb(207, 187, 190);
+        }
+
+        .formRight {
+            margin: 40px auto;
+            /* display: flex; */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .otherForm {
+            left: 50%;
+            width: 300px;
+            height: 500px;
+            padding: 20px;
+            background-color: #e5a3a3;
+            /* 表单背景色为白色 */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(213, 73, 63, 0.1);
+            /* text-align: center; */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="formContainer" class="dwo">
+        <div class="formRight">
+            <!-- Register form -->
+            <form id="register" class="otherForm">
+                <header>
+                    <h1>用户注册</h1>
+                    <p>注册后享受更多服务</p>
+                </header>
+                <section>
+                    <label>
+                        <p>用户名</p>
+                        <input type="text" id="userName" />
+                        <div class="border"></div>
+                    </label>
+                    <label>
+                        <p>邮箱</p>
+                        <input type="email" id="email" />
+                        <div class="border"></div>
+                    </label>
+                    <label>
+                        <p>密码</p>
+                        <input type="password" id="pwd" />
+                        <div class="border"></div>
+                    </label>
+                    <label>
+                        <p>重复密码</p>
+                        <input type="password" id="repwd" />
+                        <div class="border"></div>
+                    </label>
+
+                </section>
+                <footer>
+                    <button id="btn" type="button">注 册</button><br>
+                    <a href="login.html">返 回</a>
+                </footer>
+            </form>
+        </div>
+    </div>
+
+    <!-- 引入Bootstrap JS 和 jQuery (如果Bootstrap版本需要) -->
+    <!-- 注意：确保在Bootstrap JS之前引入jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+    <script>
+        window.onload = function () {
+            var oBtn = document.getElementById('btn');
+            oBtn.onclick = function () {
+                var userName = document.getElementById('userName').value;
+                var email = document.getElementById('email').value;
+                var passwor = document.getElementById('pwd').value;
+                var repasswor = document.getElementById('repwd').value;
+                if (passwor != repasswor) {
+                    alert('两次密码不一致！');
+                    return false;
+                }
+                var userInfo = {
+                    username: userName,
+                    passwor: passwor,
+                    email: email,
+                };
+                localStorage.setItem('userInfo', JSON.stringify(userInfo));
+                alert('注册成功，跳转到登录页！');
+                setTimeout('location.href = "login.html"', 1000);  //location定位  (注册成功后1秒跳转到登录项)
+            };
+        }
+
+    </script>
+
+</body>
+
+</html>
